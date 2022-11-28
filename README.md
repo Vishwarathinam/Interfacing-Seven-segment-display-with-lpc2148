@@ -1,13 +1,12 @@
 # Interfacing-Seven-segment-display-with-lpc2148
 
-Name:	
-Roll no 
-Date of experiment:
+Name:VISHWA RATHINAM S	
+Roll no :212221240063
 
 
 
-Ex. No. :
-Date: 
+
+Ex. No. :08--Interfacing-Seven-segment-display-with-lpc2148...
  
 
 ### Aim: To configure and display 4 character LED seven segment display and write a c code for displaying number 1 to 9 and A to F 
@@ -51,14 +50,58 @@ Sl no 	Hex code 	Output of LCD
 ![image](https://user-images.githubusercontent.com/36288975/201021930-7efe2b15-b0de-4d52-b87d-329fe6b91c89.png)
         Figure -3 Circuit diagram of interfacing for LPX4 - CA
 
-## Kiel - Program 
+### Kiel - Program 
+~~~
+
+#include <LPC214x.H>
+unsigned char dig[]= {0x88,0xeb,0x4c,0x49,0x2b,0x19,0x18,0xcb,0x8,0x9,0xa,0x38,0x9c,0x68,0x1c,0x1e};
+
+void delay(unsigned int count)
+{
+	int j=0,i=0;
+	for(j=0;j<count;j++)
+	{
+		for(i=0;i<120;i++);
+	}
+}
+
+int main(void)
+{
+	unsigned char count=0;
+	unsigned int i=0;
+	IO0DIR |= (1 << 11);
+	IO0SET |= (1 << 11);
+	IO0DIR |= 0x007F8000;
+	while(1)
+	{
+		count++;
+		if(count == 16)count=0;
+		for(i=0;i<800;i++)
+		{
+			IO0CLR = 0x007f8000;
+			IO0SET = (dig[count] << 15);
+			delay(200);
+		}
+  }
+}
 
 
+~~~
 
- 
+### Output :
+### BEFORE SIMULATION :
+![R1](https://user-images.githubusercontent.com/95266350/204300662-b918d3fe-9b65-4a30-a1c4-857de0d3e3d5.png)
 
+### AFTER SIMULATION(DIGIT) :
+![R2](https://user-images.githubusercontent.com/95266350/204300695-9d6e7225-8f9d-47a7-8940-70ce3528d1b4.png)
+
+### AFTER SIMULATION(ALPHABET) :
+![R3](https://user-images.githubusercontent.com/95266350/204300736-efd67b10-54bb-442b-980d-6213443095c1.png)
+
+### CIRCUIT DIAGRAM :
+![R4](https://user-images.githubusercontent.com/95266350/204300795-e05252cd-91bc-40d6-861c-2d037755e9f4.png)
 
 ### Result :
 LED seven segment display is interfaced and displayed alpha numeric characters 
 
-##  Output screen shots :
+
