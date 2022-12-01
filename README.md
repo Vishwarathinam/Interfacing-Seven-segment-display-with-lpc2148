@@ -1,4 +1,4 @@
-#Experiment No-8 Interfacing-Seven-segment-display-with-lpc2148
+# Experiment No-8 Interfacing-Seven-segment-display-with-lpc2148
 
 Name:VISHWA RATHINAM S	
 
